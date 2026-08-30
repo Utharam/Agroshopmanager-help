@@ -530,7 +530,7 @@
                 <li><a href="#purchase"><span>2.</span> Farmer Buy & RCM / കർഷകരിൽ നിന്ന് വാങ്ങൽ</a></li>
                 <li><a href="#sale"><span>3.</span> Counter Sales / കൗണ്ടർ വിൽപ്പന</a></li>
                 <li><a href="#lease"><span>4.</span> Equipment Lease / ഉപകരണ വാടക</a></li>
-                <li><a href="#restock"><span>5.</span> Restock & B2B / സ്റ്റോക്ക് & മൊത്തവ്യാപാരം</a></li>
+                <li><a href="#restock"><span>5.</span> Inventory & Restock / സ്റ്റോക്ക് മാനേജ്മെന്റ്</a></li>
             </ul>
 
             <div class="sidebar-title">Ledgers & Compliance</div>
@@ -758,22 +758,125 @@
                 </div>
             </section>
 
-            <!-- 5. Restock & Resell -->
+            <!-- 5. Inventory & Restock -->
             <section id="restock" class="doc-section">
                 <div class="section-header">
-                    <h2>📦 5. Restock & B2B Wholesaler Resell / സ്റ്റോക്ക് & മൊത്തവ്യാപാരം</h2>
-                    <span class="section-badge">Stock ➔ Restock / Resell</span>
+                    <h2>📦 5. Inventory Management: "Add Item" vs. "Restock" / സ്റ്റോക്ക് മാനേജ്മെന്റ്</h2>
+                    <span class="section-badge">Stock ➔ Add Item / Restock / Resell</span>
                 </div>
                 <div class="bilingual-block">
                     <div class="lang-col lang-en-col">
                         <div class="lang-header">🇬🇧 English</div>
-                        <p><strong>Restock from Supplier (Stock ▾ → Restock):</strong> Record inward invoices for chemicals and tools. Enter supplier GSTIN to track Input Tax Credit (ITC). Uses intelligent lookup for existing suppliers by Name, GSTIN, or Phone.</p>
-                        <p><strong>Resell to Wholesaler (Stock ▾ → Resell):</strong> Record bulk sales to commercial traders. Select buyer state (Place of Supply) to automatically split between local CGST + SGST (Kerala - 32) and interstate IGST.</p>
+                        <p>Understanding when to use <strong>Add Item</strong> versus <strong>Restock</strong> is essential for maintaining accurate shelf stock and claiming correct <strong>GST Input Tax Credit (ITC)</strong>.</p>
+                        
+                        <div class="table-wrap">
+                            <table class="doc-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:28%;">Feature / Scenario</th>
+                                        <th style="width:36%;">➕ Add Item (<code>Stock ▾ → Add Item</code>)</th>
+                                        <th style="width:36%;">🏭 Restock (<code>Stock ▾ → Restock</code>)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Primary Purpose</strong></td>
+                                        <td>Creating a new catalog item or recording opening / existing shelf inventory.</td>
+                                        <td>Purchasing fresh inventory from registered distributors/manufacturers.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>GST Input Credit (ITC)</strong></td>
+                                        <td><strong style="color:var(--accent-rose);">No ITC claimed</strong> (Out of scope, unorganized source, or opening balance).</td>
+                                        <td><strong style="color:var(--accent-green);">ITC is claimed</strong> and logged directly into GSTR-2B compliance reports.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Supplier GSTIN</strong></td>
+                                        <td>Not required.</td>
+                                        <td><strong>Mandatory</strong> (15-digit GSTIN & Supplier Bill No.).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>When to Use</strong></td>
+                                        <td>
+                                            • First-time shop setup<br>
+                                            • Entering existing shop stock on day one<br>
+                                            • Items bought without formal tax invoices<br>
+                                            • Registering new rental machines
+                                        </td>
+                                        <td>
+                                            • Buying Formic Acid or chemicals from authorized distributors<br>
+                                            • Receiving supplier shipments with a tax invoice<br>
+                                            • Whenever you need to claim input tax back
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p style="margin-top: 18px;"><strong>Understanding Pricing Fields (Cost Price vs. Selling Price):</strong></p>
+                        <ul>
+                            <li><strong>Cost Price (Purchase / Landed Cost) [₹]:</strong> The actual rate you pay per unit to acquire the product (inclusive of GST). Used internally to calculate your inventory asset valuation, profit margins, and purchase ledgers.</li>
+                            <li><strong>Selling Price (Retail / Counter Price) [₹]:</strong> The final price you charge walk-in customers at the counter (inclusive of GST). Auto-fills into the bill when selecting the product in the <strong>Sale</strong> tab.</li>
+                            <li><strong>Lease Rate (For Equipment Only) [₹]:</strong> Replaces cost/selling price for machinery. Specifies the rental tariff based on your chosen duration basis (<strong>Per Hour, Per Day, Per Week, or Per Month</strong>).</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>Resell to Wholesaler (<code>Stock ▾ → Resell</code>):</strong><br>
+                        Record bulk sales to commercial traders. Select buyer state (Place of Supply) to automatically split between local CGST + SGST (Kerala - 32) and interstate IGST.</p>
                     </div>
+
                     <div class="lang-col lang-ml-col">
                         <div class="lang-header">🇮🇳 മലയാളം</div>
-                        <p><strong>സപ്ലയറിൽ നിന്ന് സ്റ്റോക്ക് എടുക്കൽ (Restock):</strong> കമ്പനികളിൽ നിന്ന് സാധനങ്ങൾ വാങ്ങുമ്പോൾ സപ്ലയറുടെ GSTIN നൽകി ഇൻപുട്ട് ടാക്സ് ക്രെഡിറ്റ് (ITC) ലഭിക്കുന്നതിനായി രേഖപ്പെടുത്തുക. ഫോൺ നമ്പറോ GSTIN നൽകിയാൽ സപ്ലയർ വിവരങ്ങൾ തനിയെ വരും.</p>
-                        <p><strong>ഹോൾസെയിൽ വിൽപ്പന (Resell):</strong> മൊത്തവ്യാപാരികൾക്ക് വലിയ അളവിൽ വിൽക്കുമ്പോൾ അവരുടെ GSTIN നൽകി ഇൻവോയ്സ് നൽകാം. കേരളത്തിന് പുറത്താണെങ്കിൽ തനിയെ IGST കണക്കാക്കും.</p>
+                        <p>കടയിലെ സ്റ്റോക്കും ജി.എസ്.ടി ഇൻപുട്ട് ടാക്സ് ക്രെഡിറ്റും (ITC) കൃത്യമായി നിലനിർത്താൻ <strong>"Add Item"</strong>, <strong>"Restock"</strong> എന്നിവ എപ്പോൾ ഉപയോഗിക്കണമെന്ന് വ്യക്തമായി മനസ്സിലാക്കുക.</p>
+
+                        <div class="table-wrap">
+                            <table class="doc-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:28%;">വിവരങ്ങൾ</th>
+                                        <th style="width:36%;">➕ Add Item (പുതിയ ഇനം ചേർക്കൽ)</th>
+                                        <th style="width:36%;">🏭 Restock (സ്റ്റോക്ക് എടുക്കൽ)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>പ്രധാന ഉപയോഗം</strong></td>
+                                        <td>കടയിൽ നിലവിലുള്ള സ്റ്റോക്ക് രേഖപ്പെടുത്താനും പുതിയ കാറ്റലോഗ് ഉണ്ടാക്കാനും.</td>
+                                        <td>കമ്പനികളിൽ നിന്നോ അംഗീകൃത ഡീലർമാരിൽ നിന്നോ പുതിയ സ്റ്റോക്ക് വാങ്ങുമ്പോൾ.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ജി.എസ്.ടി ഇൻപുട്ട് ക്രെഡിറ്റ് (ITC)</strong></td>
+                                        <td><strong style="color:var(--accent-rose);">ബാധകമല്ല</strong> (തുടക്കത്തിലെ സ്റ്റോക്ക് അല്ലെങ്കിൽ ITC ആവശ്യമില്ലാത്തവ).</td>
+                                        <td><strong style="color:var(--accent-green);">ITC ലഭിക്കുന്നു</strong> (ജി.എസ്.ടി റിപ്പോർട്ടിൽ ക്രെഡിറ്റ് ആയി വരും).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>സപ്ലയർ GSTIN</strong></td>
+                                        <td>ആവശ്യമില്ല.</td>
+                                        <td><strong>നിർബന്ധമാണ്</strong> (15 അക്ക GSTIN & ബിൽ നമ്പർ നൽകണം).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ഉപയോഗിക്കേണ്ട സന്ദർഭങ്ങൾ</strong></td>
+                                        <td>
+                                            • ആപ്പ് ഉപയോഗിച്ച് തുടങ്ങുമ്പോൾ കടയിലുള്ള സ്റ്റോക്ക് രേഖപ്പെടുത്താൻ<br>
+                                            • ടാക്സ് ഇൻവോയ്സ് ഇല്ലാതെ വാങ്ങിയ ചില്ലറ സാധനങ്ങൾക്ക്<br>
+                                            • വാടകയ്ക്ക് കൊടുക്കുന്ന പുതിയ മെഷീനുകൾ ചേർക്കാൻ
+                                        </td>
+                                        <td>
+                                            • കമ്പനികളിൽ നിന്ന് ഫോർമിക് ആസിഡ്, ടാപ്പിംഗ് കത്തികൾ തുടങ്ങിയവ വാങ്ങുമ്പോൾ<br>
+                                            • ജി.എസ്.ടി ബില്ലോടെ സപ്ലയറിൽ നിന്ന് ലോഡ് വരുമ്പോൾ
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p style="margin-top: 18px;"><strong>വിലകൾ നൽകുമ്പോൾ ശ്രദ്ധിക്കേണ്ട കാര്യങ്ങൾ (Cost Price & Selling Price):</strong></p>
+                        <ul>
+                            <li><strong>Cost Price (വാങ്ങിയ വില / അടക്കവില) [₹]:</strong> നികുതി ഉൾപ്പെടെ ഒരു യൂണിറ്റ് സാധനത്തിന് നിങ്ങൾക്ക് ആകെ ചിലവായ തുക. കടയിലെ ആകെ സ്റ്റോക്കിന്റെ മൂല്യവും ലാഭവും കണക്കാക്കാൻ ഇത് സഹായിക്കുന്നു.</li>
+                            <li><strong>Selling Price (വിൽക്കുന്ന വില / കൗണ്ടർ വില) [₹]:</strong> കൗണ്ടറിൽ ഉപഭോക്താവിൽ നിന്ന് വാങ്ങുന്ന നികുതി ഉൾപ്പെടെയുള്ള ചില്ലറ വില (MRP). <strong>Sale</strong> ടാബിൽ സാധനം തിരഞ്ഞെടുക്കുമ്പോൾ ഈ വില തനിയെ ബില്ലിൽ വരുന്നതാണ്.</li>
+                            <li><strong>Lease Rate (വാടക നിരക്ക്) [₹]:</strong> വാടകയ്ക്ക് നൽകുന്ന ഉപകരണങ്ങൾക്ക് മാത്രമുള്ള നിരക്ക്. <strong>മണിക്കൂർ, ദിവസം, ആഴ്ച, മാസം</strong> എന്നീ അടിസ്ഥാനത്തിൽ വാടക നിശ്ചയിക്കാം.</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>ഹോൾസെയിൽ വിൽപ്പന (<code>Stock ▾ → Resell</code>):</strong><br>
+                        മൊത്തവ്യാപാരികൾക്ക് വലിയ അളവിൽ വിൽക്കുമ്പോൾ അവരുടെ GSTIN നൽകി ഇൻവോയ്സ് നൽകാം. കേരളത്തിന് പുറത്താണെങ്കിൽ തനിയെ IGST കണക്കാക്കും.</p>
                     </div>
                 </div>
             </section>
