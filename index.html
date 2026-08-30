@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Shop Manager — User Guide & Documentation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+    <style>
+        :root {
+            --bg-primary: #090d16;
+            --bg-surface: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-subtle: #162032;
+            --border-color: #334155;
+            --border-accent: #10b981;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-green: #10b981;
+            --accent-green-bg: rgba(16, 185, 129, 0.12);
+            --accent-blue: #3b82f6;
+            --accent-blue-bg: rgba(59, 130, 246, 0.12);
+            --accent-amber: #f59e0b;
+            --accent-amber-bg: rgba(245, 158, 11, 0.12);
+            --accent-rose: #f43f5e;
+            --accent-rose-bg: rgba(244, 63, 94, 0.12);
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Manjari", "Gayathri", "Noto Sans Malayalam", sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 13, 22, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .brand span.badge {
+            background: var(--accent-green-bg);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Search input */
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px 8px 36px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            width: 220px;
+            transition: all 0.2s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            width: 280px;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 10px;
+            fill: var(--text-muted);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Language Toggle Buttons */
+        .lang-switch {
+            display: flex;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-green);
+            color: #042f1d;
+            font-weight: 700;
+        }
+
+        /* Mobile Hamburger */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Layout Container */
+        .layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* Sidebar Navigation */
+        aside.sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-surface);
+            border-right: 1px solid var(--border-color);
+            position: sticky;
+            top: var(--header-height);
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            padding: 24px 16px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+        }
+
+        .nav-list a:hover {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .nav-list a.active {
+            background: var(--accent-green-bg);
+            color: var(--accent-green);
+            font-weight: 700;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        /* Main Content */
+        main.content {
+            flex: 1;
+            padding: 40px;
+            max-width: 960px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .hero-banner h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .hero-banner p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--accent-green);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* Section Cards */
+        .doc-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 36px;
+            scroll-margin-top: calc(var(--header-height) + 20px);
+            transition: border-color 0.2s ease;
+        }
+
+        .doc-section:hover {
+            border-color: #475569;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+        }
+
+        .section-header .section-badge {
+            background: var(--accent-blue-bg);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        /* Bilingual Grid */
+        .bilingual-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        body.lang-en .lang-ml-col { display: none; }
+        body.lang-en .bilingual-block { grid-template-columns: 1fr; }
+
+        body.lang-ml .lang-en-col { display: none; }
+        body.lang-ml .bilingual-block { grid-template-columns: 1fr; }
+
+        .lang-col {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .lang-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lang-en-col .lang-header { color: #60a5fa; }
+        .lang-ml-col .lang-header { color: #34d399; }
+
+        .lang-col p {
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+        }
+
+        .lang-col ul, .lang-col ol {
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+        }
+
+        .lang-col li {
+            margin-bottom: 6px;
+        }
+
+        .lang-col strong {
+            color: #ffffff;
+        }
+
+        /* Flow Ribbon / Step Ribbon */
+        .step-ribbon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-green);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .step-ribbon span.arrow {
+            color: var(--accent-green);
+            font-weight: 800;
+        }
+
+        .step-ribbon span.pill {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+
+        /* Callout Alerts */
+        .alert-box {
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 18px 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .alert-warning {
+            background: var(--accent-amber-bg);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            border-left: 4px solid var(--accent-amber);
+            color: #fef3c7;
+        }
+
+        .alert-danger {
+            background: var(--accent-rose-bg);
+            border: 1px solid rgba(244, 63, 94, 0.4);
+            border-left: 4px solid var(--accent-rose);
+            color: #ffe4e6;
+        }
+
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 18px 0;
+        }
+
+        table.doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+
+        table.doc-table th {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        table.doc-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            color: #cbd5e1;
+        }
+
+        table.doc-table tr:nth-child(even) {
+            background: var(--bg-card-subtle);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 30px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 60px;
+        }
+
+        /* Responsive Mobile Styles */
+        @media (max-width: 900px) {
+            .mobile-toggle { display: block; }
+            aside.sidebar {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 280px;
+                z-index: 99;
+                transition: left 0.3s ease;
+                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+            }
+            aside.sidebar.open { left: 0; }
+            main.content { padding: 20px 16px; }
+            .bilingual-block { grid-template-columns: 1fr; }
+            .search-box input { width: 160px; }
+            .search-box input:focus { width: 200px; }
+        }
+
+        /* Print styles */
+        @media print {
+            header, aside.sidebar, .lang-switch, .search-box { display: none !important; }
+            main.content { padding: 0 !important; max-width: 100% !important; }
+            .doc-section { break-inside: avoid; border: 1px solid #ccc; color: #000; background: #fff; }
+            body { background: #fff; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div style="display: flex; align-items: center; gap: 14px;">
+            <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Toggle Navigation">☰</button>
+            <a href="#" class="brand">
+                <span>🌱</span> Agro Shop Manager
+                <span class="badge">Docs</span>
+            </a>
+        </div>
+
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-box">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="docSearch" placeholder="Search topics, GST, RCM..." onkeyup="filterDocs()">
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="lang-switch">
+                <button class="lang-btn active" id="btnBoth" onclick="setLanguage('both')">🌐 Both</button>
+                <button class="lang-btn" id="btnEn" onclick="setLanguage('en')">🇬🇧 English</button>
+                <button class="lang-btn" id="btnMl" onclick="setLanguage('ml')">🇮🇳 മലയാളം</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-title">Getting Started</div>
+            <ul class="nav-list" style="margin-bottom: 20px;">
+                <li><a href="#setup" class="active"><span>1.</span> Initial Setup / സജ്ജീകരണം</a></li>
+                <li><a href="#purchase"><span>2.</span> Farmer Buy & RCM / കർഷകരിൽ നിന്ന് വാങ്ങൽ</a></li>
+                <li><a href="#sale"><span>3.</span> Counter Sales / കൗണ്ടർ വിൽപ്പന</a></li>
+                <li><a href="#lease"><span>4.</span> Equipment Lease / ഉപകരണ വാടക</a></li>
+                <li><a href="#restock"><span>5.</span> Restock & B2B / സ്റ്റോക്ക് & മൊത്തവ്യാപാരം</a></li>
+            </ul>
+
+            <div class="sidebar-title">Ledgers & Compliance</div>
+            <ul class="nav-list">
+                <li><a href="#books"><span>6.</span> Cash & Day Book / കണക്കു പുസ്തകങ്ങൾ</a></li>
+                <li><a href="#customers"><span>7.</span> People & Advances / അഡ്വാൻസ് കണക്കുകൾ</a></li>
+                <li><a href="#reports"><span>8.</span> GST Reports / ജിഎസ്ടി റിപ്പോർട്ടുകൾ</a></li>
+                <li><a href="#backup"><span>9.</span> Data Safety / വാട്ട്സ്ആപ്പ് ബാക്കപ്പ്</a></li>
+                <li><a href="#shortcuts"><span>10.</span> Quick Reference / പ്രധാന ലിങ്കുകൾ</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Documentation Content -->
+        <main class="content">
+            
+            <div class="hero-banner">
+                <h1>🌱 Complete User Guide & Manual</h1>
+                <p>Comprehensive step-by-step user documentation in English and മലയാളം (Malayalam) for Agro Shop Manager.</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">🌾 Rubber & Spices</span>
+                    <span class="hero-tag">🧾 GST RCM Ready</span>
+                    <span class="hero-tag">🔒 100% Offline-First</span>
+                    <span class="hero-tag">📱 WhatsApp Daily Backup</span>
+                </div>
+            </div>
+
+            <!-- 1. Initial Setup -->
+            <section id="setup" class="doc-section">
+                <div class="section-header">
+                    <h2>⚙️ 1. Getting Started & Setup / തുടക്കം & ആദ്യ സജ്ജീകരണം</h2>
+                    <span class="section-badge">Admin & Settings</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p>When you log in for the first time with your approved email and password, the system checks your license key (<code>UTM-XXXX</code>) and presents the Welcome Setup Modal.</p>
+                        <p><strong>Configuring Shop Details:</strong></p>
+                        <ul>
+                            <li>Go to <code>Admin ▾ → Settings</code>.</li>
+                            <li>Enter your <strong>Shop Name</strong> (e.g. <em>St. George Agro Agencies</em>), Phone Number, Address, and GSTIN.</li>
+                            <li>Choose default print format: <strong>Standard A4</strong> or <strong>80mm Thermal Receipt (POS)</strong>.</li>
+                            <li>Click <strong>Save Settings</strong>. Your shop name updates instantly across all top bars and tax invoices.</li>
+                        </ul>
+                        <p><strong>Master Product Catalog:</strong></p>
+                        <ul>
+                            <li>Open <code>Admin ▾ → Products</code> to view built-in Kerala commodity templates (RSS 4, RSS 5, Field Latex, Scrap Rubber, Black Pepper, Cardamom, Nutmeg, Areca Nut, Formic Acid).</li>
+                            <li>Use <code>➕ Add Custom Product</code> to define custom items, local names, HSN codes, and GST rates.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p>അംഗീകൃത യൂസർ ഐഡിയും പാസ്‌വേഡും ഉപയോഗിച്ച് ലോഗിൻ ചെയ്യുമ്പോൾ സിസ്റ്റം ലൈസൻസ് കീ (<code>UTM-XXXX</code>) പരിശോധിച്ച് ആദ്യ സജ്ജീകരണ പേജ് തുറക്കുന്നു.</p>
+                        <p><strong>കടയുടെ വിവരങ്ങൾ നൽകാൻ:</strong></p>
+                        <ul>
+                            <li>മെനുവിൽ നിന്ന് <code>Admin ▾ → Settings</code> തിരഞ്ഞെടുക്കുക.</li>
+                            <li>നിങ്ങളുടെ സ്ഥാപനത്തിന്റെ പേര്, ഫോൺ നമ്പർ, മേൽവിലാസം, GSTIN എന്നിവ നൽകുക.</li>
+                            <li>ബില്ലിങ് പ്രിന്റ് ഫോർമാറ്റ് തിരഞ്ഞെടുക്കുക: <strong>Standard A4</strong> അല്ലെങ്കിൽ <strong>80mm Thermal POS</strong>.</li>
+                            <li><strong>Save Settings</strong> ക്ലിക്ക് ചെയ്യുക. നൽകിയ വിവരങ്ങൾ ഉടൻ തന്നെ മുകളിലെ തലക്കെട്ടിലും ബില്ലുകളിലും ദൃശ്യമാകും.</li>
+                        </ul>
+                        <p><strong>മാസ്റ്റർ ഉൽപ്പന്നങ്ങൾ പരിശോധിക്കാൻ:</strong></p>
+                        <ul>
+                            <li><code>Admin ▾ → Products</code> വഴി റബ്ബർ (RSS 4, RSS 5, ലാറ്റക്സ്), കുരുമുളക്, അടക്ക, ഫോർമിക് ആസിഡ് തുടങ്ങിയവ കാണാം.</li>
+                            <li>പുതിയ കാർഷിക ഉൽപ്പന്നങ്ങൾ ചേർക്കാൻ <code>➕ Add Custom Product</code> ഉപയോഗിക്കുക.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Purchase & RCM -->
+            <section id="purchase" class="doc-section">
+                <div class="section-header">
+                    <h2>🌾 2. Buying Produce from Farmers (RCM) / കർഷകരിൽ നിന്ന് വാങ്ങൽ</h2>
+                    <span class="section-badge">Transactions ➔ Buy</span>
+                </div>
+                <div class="step-ribbon">
+                    <span class="pill">Dashboard</span> <span class="arrow">➔</span>
+                    <span class="pill">🛒 Purchase</span> <span class="arrow">➔</span>
+                    <span class="pill">Farmer Phone</span> <span class="arrow">➔</span>
+                    <span class="pill">Select Crop</span> <span class="arrow">➔</span>
+                    <span class="pill">Qty (kg) & Rate</span> <span class="arrow">➔</span>
+                    <span class="pill">Adjust Advance</span> <span class="arrow">➔</span>
+                    <span class="pill">💾 Save & Print</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p>Agro shops buying unprocessed agricultural commodities (Rubber sheets, Field Latex, Pepper) operate under <strong>GST Reverse Charge Mechanism (RCM)</strong> where the buyer self-invoices.</p>
+                        <ol>
+                            <li>Click <strong>Purchase</strong> on the top navigation or Dashboard hero button.</li>
+                            <li>Enter Farmer's 10-digit Phone Number. Existing farmer details auto-fill automatically.</li>
+                            <li>Select crop (e.g. <em>Ribbed Smoked Sheets (RSS 4)</em>). System auto-assigns HSN <code>40012100</code>, 5% GST, and RCM badge.</li>
+                            <li>Enter <strong>Quantity (kg)</strong> and <strong>Rate per Unit (₹)</strong>. Taxable value is auto-split.</li>
+                            <li><strong>Advance Loans Deduction:</strong> If the farmer has an active loan, an orange box displays available advance. Check <em>Adjust from advance</em> to deduct from today's payout.</li>
+                            <li>Select payment mode (Cash, UPI, Bank) and save.</li>
+                        </ol>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p>റബ്ബർ ഷീറ്റ്, ലാറ്റക്സ്, കുരുമുളക് എന്നിവ കർഷകരിൽ നിന്ന് നേരിട്ട് വാങ്ങുമ്പോൾ RCM (റിവേഴ്സ് ചാർജ്ജ് മെക്കാനിസം) പ്രകാരം സ്വയം ഇൻവോയ്സ് തയ്യാറാക്കേണ്ടതുണ്ട്.</p>
+                        <ol>
+                            <li>ഡാഷ്‌ബോർഡിലെ <strong>🛒 Purchase</strong> ബട്ടൺ ക്ലിക്ക് ചെയ്യുക.</li>
+                            <li>കർഷകന്റെ 10 അക്ക ഫോൺ നമ്പർ നൽകുക (പഴയ കർഷകനാണെങ്കിൽ പേരും വിലാസവും തനിയെ വരും).</li>
+                            <li>ഉൽപ്പന്നം തിരഞ്ഞെടുക്കുക (ഉദാ: RSS 4). സിസ്റ്റം തനിയെ HSN കോഡും 5% GST (RCM) നിരക്കും നൽകും.</li>
+                            <li>തൂക്കവും (Quantity kg) കിലോ നിരക്കും (Rate) നൽകുക.</li>
+                            <li><strong>മുൻകൂർ തുക (Advance) കുറയ്ക്കാൻ:</strong> കർഷകന് നേരത്തെ കൊടുത്ത അഡ്വാൻസ് ഉണ്ടെങ്കിൽ ഓറഞ്ച് ബോക്സിൽ കാണിക്കും. <em>Adjust from advance</em> ടിക്ക് ചെയ്ത് തുക നൽകിയാൽ ഇന്നത്തെ പണത്തിൽ നിന്ന് അത് കുറച്ച് ബാക്കി മാത്രം നൽകാം.</li>
+                            <li>പണം നൽകിയ രീതി (Cash / UPI / Bank) തിരഞ്ഞെടുത്ത് സേവ് ചെയ്യുക.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Counter Sale & Change Calculator -->
+            <section id="sale" class="doc-section">
+                <div class="section-header">
+                    <h2>🛒 3. Counter Sales & Change Calculator / കൗണ്ടർ വിൽപ്പന</h2>
+                    <span class="section-badge">Transactions ➔ Sell</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p>Used for retail selling of farm inputs, tapping knives, acid, spouts, and cups to walk-in customers.</p>
+                        <ul>
+                            <li>Open <code>Transactions ▾ → Sell</code>.</li>
+                            <li>Enter customer phone and name.</li>
+                            <li>Select product from the dropdown — available stock is displayed live.</li>
+                            <li>Enter quantity and selling price.</li>
+                            <li><strong>Cash Change Calculator:</strong> When selecting Cash mode, enter the amount given by customer (e.g. ₹500 for a ₹320 bill) to see the exact return balance highlighted in green (₹180.00).</li>
+                            <li>Click <strong>💾 Save Sale</strong>. Stock automatically deducts from inventory.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p>ഫോർമിക് ആസിഡ്, ചിരട്ട, സ്പൗട്ട്, കത്തികൾ തുടങ്ങിയവ കൗണ്ടറിൽ വിൽക്കുമ്പോൾ ഉപയോഗിക്കുക.</p>
+                        <ul>
+                            <li><code>Transactions ▾ → Sell</code> തിരഞ്ഞെടുക്കുക.</li>
+                            <li>ഉപഭോക്താവിന്റെ ഫോൺ നമ്പറും പേരും നൽകുക.</li>
+                            <li>ഡ്രോപ്പ് ഡൗണിൽ നിന്ന് സാധനം തിരഞ്ഞെടുക്കുക (ലഭ്യമായ സ്റ്റോക്ക് അവിടെത്തന്നെ കാണാം).</li>
+                            <li>അളവും വിലയും നൽകുക.</li>
+                            <li><strong>ചില്ലറ കണക്കുകൂട്ടാൻ (Change Calculator):</strong> പേയ്‌മെന്റ് Cash ആക്കുമ്പോൾ ഉപഭോക്താവ് നൽകിയ തുക നൽകിയാൽ തിരികെ കൊടുക്കേണ്ട ബാക്കി തുക (Balance) പച്ച നിറത്തിൽ കാണാം.</li>
+                            <li><strong>💾 Save Sale</strong> നൽകുക. സ്റ്റോക്ക് തനിയെ കുറയുന്നതാണ്.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Equipment Lease -->
+            <section id="lease" class="doc-section">
+                <div class="section-header">
+                    <h2>🔧 4. Equipment Lease & Rental Tracker / വാടക ഉപകരണങ്ങൾ</h2>
+                    <span class="section-badge">Transactions ➔ Lease</span>
+                </div>
+                <div class="table-wrap">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Menu Route</th>
+                                <th>Description / വിവരണം</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Rent Out</strong></td>
+                                <td><code>Transactions ➔ Lease</code></td>
+                                <td>Select customer, equipment, rental basis (Hour/Day/Week/Month), rate, duration, and optional Security Deposit.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Monitor</strong></td>
+                                <td><code>Active Leases List</code></td>
+                                <td>Live color-coded tracking of ongoing rentals with due date countdowns.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Return</strong></td>
+                                <td><code>Return Button</code></td>
+                                <td>Auto-calculates extra late fees (if returned overdue) and refunds remaining deposit balance.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p>Rent out power sprayers, brush cutters, or rubber processing rollers on an Hourly, Daily, Weekly, or Monthly basis with automated security deposit reconciliation.</p>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p>സ്പ്രേയറുകൾ, ബ്രഷ് കട്ടറുകൾ തുടങ്ങിയ ഉപകരണങ്ങൾ ദിവസേനയോ മണിക്കൂർ അടിസ്ഥാനത്തിലോ വാടകയ്ക്ക് നൽകാം. ഉപകരണം വൈകിയാണ് കൊണ്ടുവന്നതെങ്കിൽ അധിക ദിവസങ്ങളിലെ വാടക ഡെപ്പോസിറ്റിൽ നിന്ന് കുറയ്ക്കാനും ബാക്കി നൽകാനും സാധിക്കും.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Restock & Resell -->
+            <section id="restock" class="doc-section">
+                <div class="section-header">
+                    <h2>📦 5. Restock & B2B Wholesaler Resell / സ്റ്റോക്ക് & മൊത്തവ്യാപാരം</h2>
+                    <span class="section-badge">Stock ➔ Restock / Resell</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p><strong>Restock from Supplier (Stock ▾ → Restock):</strong> Record inward invoices for chemicals and tools. Enter supplier GSTIN to track Input Tax Credit (ITC). Uses intelligent lookup for existing suppliers by Name, GSTIN, or Phone.</p>
+                        <p><strong>Resell to Wholesaler (Stock ▾ → Resell):</strong> Record bulk sales to commercial traders. Select buyer state (Place of Supply) to automatically split between local CGST + SGST (Kerala - 32) and interstate IGST.</p>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p><strong>സപ്ലയറിൽ നിന്ന് സ്റ്റോക്ക് എടുക്കൽ (Restock):</strong> കമ്പനികളിൽ നിന്ന് സാധനങ്ങൾ വാങ്ങുമ്പോൾ സപ്ലയറുടെ GSTIN നൽകി ഇൻപുട്ട് ടാക്സ് ക്രെഡിറ്റ് (ITC) ലഭിക്കുന്നതിനായി രേഖപ്പെടുത്തുക. ഫോൺ നമ്പറോ GSTIN നൽകിയാൽ സപ്ലയർ വിവരങ്ങൾ തനിയെ വരും.</p>
+                        <p><strong>ഹോൾസെയിൽ വിൽപ്പന (Resell):</strong> മൊത്തവ്യാപാരികൾക്ക് വലിയ അളവിൽ വിൽക്കുമ്പോൾ അവരുടെ GSTIN നൽകി ഇൻവോയ്സ് നൽകാം. കേരളത്തിന് പുറത്താണെങ്കിൽ തനിയെ IGST കണക്കാക്കും.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Books & Cash Reconciliation -->
+            <section id="books" class="doc-section">
+                <div class="section-header">
+                    <h2>💵 6. Cash Book vs Day Book / കണക്കു പുസ്തകങ്ങൾ</h2>
+                    <span class="section-badge">Books ➔ Cash / Day</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p><strong>Cash Book (Books ▾ → Cash):</strong> Tracks physical drawer currency only. Calculates Opening Balance + Cash In (Sales, Repayments, Manual Receipts) − Cash Out (Farmer Buys, Restocks, Expenses) = Real-time Drawer Closing Balance. Use <code>➕ Manual Entry</code> (at the top) to log tea/snacks, electricity bills, or personal withdrawals.</p>
+                        <p><strong>Day Book (Books ▾ → Day):</strong> A master chronological ledger combining all payment modes (Cash, UPI / GPay, Bank Transfer).</p>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p><strong>ക്യാഷ് ബുക്ക് (Cash Book):</strong> കടയിലെ പെട്ടിയിലുള്ള യഥാർത്ഥ പണത്തിന്റെ വരവ്-ചെലവ് കണക്ക് മാത്രം കാണിക്കുന്നു. ചായച്ചെലവ്, കറന്റ് ബിൽ തുടങ്ങിയവ കുറിക്കാൻ മുകളിലെ <code>➕ Manual Entry</code> ഉപയോഗിക്കുക.</p>
+                        <p><strong>ഡേ ബുക്ക് (Day Book):</strong> കടയിലെ പണം, ഗൂഗിൾ പേ (UPI), ബാങ്ക് വഴിയുള്ള എല്ലാ ഇടപാടുകളുടെയും പൂർണ്ണരൂപം തീയതി തിരിച്ച് കാണാം.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Customer & Supplier Directories -->
+            <section id="customers" class="doc-section">
+                <div class="section-header">
+                    <h2>👥 7. People Directory & Advance Loans / കസ്റ്റമർ & അഡ്വാൻസ് കണക്കുകൾ</h2>
+                    <span class="section-badge">People ➔ Directory</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p>Open <code>People ▾ → Customers</code> or <code>Suppliers</code> to view complete ledgers, transaction history, and 💰 Outstanding Advance balances.</p>
+                        <ul>
+                            <li><strong>💵 Give Advance:</strong> Issue temporary advance cash to farmers before crop delivery.</li>
+                            <li><strong>💰 Record Repayment:</strong> Record direct cash repayments made by farmers.</li>
+                            <li><strong>⚖️ Purchase Adjustment:</strong> Automatically deducted during farmer purchase transactions.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p><code>People ▾ → Customers</code> അല്ലെങ്കിൽ <code>Suppliers</code> തുറന്ന് കർഷകരുടെ മുൻകാല ഇടപാടുകളും നൽകിയ അഡ്വാൻസ് തുകയും കാണാം.</p>
+                        <ul>
+                            <li><strong>Give Advance:</strong> കർഷകന് പുതിയ അഡ്വാൻസ് നൽകാൻ ഉപയോഗിക്കുക.</li>
+                            <li><strong>Record Repayment:</strong> കർഷകൻ പണം നേരിട്ട് തിരിച്ചടച്ചാൽ രേഖപ്പെടുത്തുക.</li>
+                            <li><strong>Purchase Adjustment:</strong> സാധനങ്ങൾ വാങ്ങുമ്പോൾ ഈ അഡ്വാൻസ് തുക തനിയെ കുറയ്ക്കാവുന്നതാണ്.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. GST Reports -->
+            <section id="reports" class="doc-section">
+                <div class="section-header">
+                    <h2>📊 8. GST Reports & Compliance / ജിഎസ്ടി റിപ്പോർട്ടുകൾ</h2>
+                    <span class="section-badge">Books ➔ Reports</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p>Generate and export audit-ready CSV sheets for your tax consultant from <code>Books ▾ → Reports</code>:</p>
+                        <ol>
+                            <li><strong>🧾 Sales Outward (GSTR-1):</strong> Retail counter sales and wholesale invoices with CGST/SGST/IGST breakdown.</li>
+                            <li><strong>🌾 Farmer RCM Purchases (GSTR-3B):</strong> Reverse charge agricultural produce liability list.</li>
+                            <li><strong>🏭 Supplier Inward (GSTR-2B):</strong> Input Tax Credit (ITC) eligible restock purchases.</li>
+                            <li><strong>💰 Cash & UPI Position:</strong> Daily multi-channel closing balances.</li>
+                        </ol>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p><code>Books ▾ → Reports</code> വഴി ജി.എസ്.ടി ഫയലിംഗിനാവശ്യമായ കണക്കുകൾ ഒരു ക്ലിക്കിൽ CSV ഫയലായി ഡൗൺലോഡ് ചെയ്ത് ടാക്സ് കൺസൾട്ടന്റിന് അയക്കാം.</p>
+                        <ol>
+                            <li><strong>Sales GST:</strong> ഔട്ട്‌വേഡ് സപ്ലൈ (GSTR-1).</li>
+                            <li><strong>Farmer RCM:</strong> കർഷകരിൽ നിന്ന് വാങ്ങിയതിന്റെ ആർ.സി.എം ലയബിലിറ്റി (GSTR-3B).</li>
+                            <li><strong>Purchase ITC:</strong> ഇൻപുട്ട് ടാക്സ് ക്രെഡിറ്റ് കണക്കുകൾ.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Data Safety & Backup -->
+            <section id="backup" class="doc-section">
+                <div class="section-header">
+                    <h2>🔒 9. Data Safety & Daily Backup / വിവരങ്ങളുടെ സുരക്ഷയും ബാക്കപ്പും</h2>
+                    <span class="section-badge">Admin ➔ Backup</span>
+                </div>
+                <div class="alert-box alert-danger">
+                    <strong>⚠️ Critical Device Storage Notice / പ്രത്യേകം ശ്രദ്ധിക്കുക:</strong><br>
+                    Agro Shop Manager is 100% offline-first. Your shop records live inside your browser's private storage (IndexedDB), NOT on external public cloud servers. If your phone/laptop is lost, formatted, or browser history is cleared, your data is lost unless backed up.
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p><strong>Daily WhatsApp / Drive Backup:</strong></p>
+                        <ol>
+                            <li>Open <code>Admin ▾ → Backup</code>.</li>
+                            <li>Click <strong>📤 Send to WhatsApp / Drive</strong>.</li>
+                            <li>Select your own WhatsApp chat or Google Drive to safely transmit the <code>.txt</code> backup file.</li>
+                        </ol>
+                        <p><strong>Restoring Data on a New Device:</strong></p>
+                        <p>Open Agro Shop Manager on the new device, go to <code>Admin ▾ → Backup</code>, click <em>Choose File</em> under Restore Data, and upload your exported backup file.</p>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p><strong>ബാക്കപ്പ് ചെയ്യുന്ന വിധം:</strong></p>
+                        <ol>
+                            <li><code>Admin ▾ → Backup</code> തുറക്കുക.</li>
+                            <li><strong>📤 Send to WhatsApp / Drive</strong> ക്ലിക്ക് ചെയ്ത് സ്വന്തം വാട്ട്സ്ആപ്പിലേക്കോ ഗൂഗിൾ ഡ്രൈവിലേക്കോ ഫയൽ അയച്ച് സൂക്ഷിക്കുക.</li>
+                        </ol>
+                        <p><strong>പുതിയ ഫോണിലേക്ക് മാറ്റാൻ:</strong></p>
+                        <p>പുതിയ ഫോണിൽ ആപ്പ് തുറന്ന് Backup പേജിൽ പോയി <em>Restore Data from Backup</em> വഴി ഫയൽ അപ്‌ലോഡ് ചെയ്യുക.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Shortcut Table -->
+            <section id="shortcuts" class="doc-section">
+                <div class="section-header">
+                    <h2>⚡ 10. Quick Reference Shortcut Table / പ്രധാന ലിങ്കുകൾ</h2>
+                    <span class="section-badge">Navigation Guide</span>
+                </div>
+                <div class="table-wrap">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Feature / പ്രവർത്തനം</th>
+                                <th>Menu Route / വഴി</th>
+                                <th>Purpose / ഉപയോഗം</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🌾 Farmer Purchase</td>
+                                <td><code>Transactions ➔ Buy</code></td>
+                                <td>Rubber/crop buying with RCM & Advance deduction</td>
+                            </tr>
+                            <tr>
+                                <td>🛒 Counter Sale</td>
+                                <td><code>Transactions ➔ Sell</code></td>
+                                <td>Farm inputs counter bill with Change Calculator</td>
+                            </tr>
+                            <tr>
+                                <td>🔧 Equipment Lease</td>
+                                <td><code>Transactions ➔ Lease</code></td>
+                                <td>Tool & machine rental with security deposit</td>
+                            </tr>
+                            <tr>
+                                <td>💵 Cash Book</td>
+                                <td><code>Books ➔ Cash</code></td>
+                                <td>Physical drawer cash reconciliation & petty expenses</td>
+                            </tr>
+                            <tr>
+                                <td>📒 Day Book</td>
+                                <td><code>Books ➔ Day</code></td>
+                                <td>Complete multi-channel ledger (Cash, UPI, Bank)</td>
+                            </tr>
+                            <tr>
+                                <td>📊 GST Reports</td>
+                                <td><code>Books ➔ Reports</code></td>
+                                <td>Outward Sales, Farmer RCM, and ITC CSV generation</td>
+                            </tr>
+                            <tr>
+                                <td>📱 WhatsApp Backup</td>
+                                <td><code>Admin ➔ Backup</code></td>
+                                <td>Daily offline data export to WhatsApp / Drive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>🌱 <strong>Agro Shop Manager</strong> — Built for single-person Agro & Commodity Shops in Kerala.</p>
+        <p style="margin-top:6px; color: var(--text-muted);">Licensed Offline-First Web Application | Documentation v1.0</p>
+    </footer>
+
+    <script>
+        // Language Toggle Logic
+        function setLanguage(lang) {
+            document.body.classList.remove('lang-en', 'lang-ml');
+            document.getElementById('btnBoth').classList.remove('active');
+            document.getElementById('btnEn').classList.remove('active');
+            document.getElementById('btnMl').classList.remove('active');
+
+            if (lang === 'en') {
+                document.body.classList.add('lang-en');
+                document.getElementById('btnEn').classList.add('active');
+            } else if (lang === 'ml') {
+                document.body.classList.add('lang-ml');
+                document.getElementById('btnMl').classList.add('active');
+            } else {
+                document.getElementById('btnBoth').classList.add('active');
+            }
+        }
+
+        // Mobile Sidebar Toggle
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Search Filter
+        function filterDocs() {
+            const query = document.getElementById('docSearch').value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.doc-section');
+
+            sections.forEach(sec => {
+                const text = sec.textContent.toLowerCase();
+                if (query === '' || text.includes(query)) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+        }
+
+        // Scrollspy Active Sidebar Link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.doc-section');
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(section => {
+                if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
+                    const id = section.getAttribute('id');
+                    document.querySelectorAll('.nav-list a').forEach(a => {
+                        a.classList.remove('active');
+                        if (a.getAttribute('href') === '#' + id) {
+                            a.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
