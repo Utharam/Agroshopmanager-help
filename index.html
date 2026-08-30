@@ -494,9 +494,13 @@
     <header>
         <div style="display: flex; align-items: center; gap: 14px;">
             <button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Toggle Navigation">☰</button>
-            <a href="#" class="brand">
-                <span>🌱</span> Agro Shop Manager
-                <span class="badge">Docs</span>
+            <a href="#" class="brand" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                <div style="background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(5,150,105,0.15));border:1px solid rgba(16,185,129,0.4);width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;box-shadow:0 2px 8px rgba(16,185,129,0.2);font-size:18px;">🌱</div>
+                <div style="display:flex;flex-direction:column;">
+                    <span style="font-size:1.1rem;font-weight:800;letter-spacing:-0.3px;color:#f8fafc;line-height:1.2;">AgroShop <span style="color:#10b981;">Manager</span></span>
+                    <span style="font-size:0.68rem;color:#94a3b8;font-weight:600;display:flex;align-items:center;gap:4px;margin-top:1px;">by <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);padding:0 5px;border-radius:4px;color:#f1f5f9;font-weight:700;font-size:8.5px;letter-spacing:0.3px;">UTHARAM</span></span>
+                </div>
+                <span class="badge" style="margin-left:4px;">Docs</span>
             </a>
         </div>
 
@@ -521,7 +525,8 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-title">Getting Started</div>
             <ul class="nav-list" style="margin-bottom: 20px;">
-                <li><a href="#setup" class="active"><span>1.</span> Initial Setup / സജ്ജീകരണം</a></li>
+                <li><a href="#intro" class="active"><span>🌱</span> Introduction / ആമുഖം</a></li>
+                <li><a href="#setup"><span>1.</span> Initial Setup / സജ്ജീകരണം</a></li>
                 <li><a href="#purchase"><span>2.</span> Farmer Buy & RCM / കർഷകരിൽ നിന്ന് വാങ്ങൽ</a></li>
                 <li><a href="#sale"><span>3.</span> Counter Sales / കൗണ്ടർ വിൽപ്പന</a></li>
                 <li><a href="#lease"><span>4.</span> Equipment Lease / ഉപകരണ വാടക</a></li>
@@ -551,6 +556,42 @@
                     <span class="hero-tag">📱 WhatsApp Daily Backup</span>
                 </div>
             </div>
+
+            <!-- Introduction Section -->
+            <section id="intro" class="doc-section">
+                <div class="section-header">
+                    <h2>🌱 Introduction to AgroShop Manager / ആമുഖം</h2>
+                    <span class="section-badge">Overview</span>
+                </div>
+                <div class="bilingual-block">
+                    <div class="lang-col lang-en-col">
+                        <div class="lang-header">🇬🇧 English</div>
+                        <p><strong>What is AgroShop Manager?</strong><br>
+                        AgroShop Manager is an all-in-one billing, cash management, inventory, and GST compliance web app specifically engineered for single-operator agricultural and commodity shops across Kerala. From buying raw commodities (rubber sheets, field latex, spices) directly from farmers to selling retail farm inputs and leasing machinery, the app streamlines your daily counter operations into a single cohesive system.</p>
+                        
+                        <p style="margin-top: 16px;"><strong>Why AgroShop Manager?</strong></p>
+                        <ul>
+                            <li><strong>One-Step Billing to GST Reports:</strong> Every transaction—whether an RCM farmer purchase voucher, a retail counter receipt, or an equipment rental—instantly updates your stock, drawer balance, and tax ledgers (GSTR-1 Outward Sales, GSTR-3B Farmer RCM, and GSTR-2B Input Tax Credit) without duplicate data entry.</li>
+                            <li><strong>Designed for the Kerala Counter Flow:</strong> Pre-loaded with regional agricultural commodities (RSS 4, RSS 5, Field Latex, Pepper, Areca Nut, Formic Acid), integrated with live cash change return calculators, and equipped with instant farmer advance loan adjustments.</li>
+                            <li><strong>100% Privacy-First & Local Storage:</strong> Your customer data, purchase history, and margins stay exclusively on your personal device’s browser storage (<code>IndexedDB</code>). Nothing is stored or tracked on public cloud database servers.</li>
+                            <li><strong>One-Click Manual Multi-Device Sync:</strong> Seamlessly export encrypted JSON/text backups to WhatsApp or Google Drive in a single click, and restore the file on any phone, tablet, or desktop to sync data across your devices without recurring cloud server fees.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-col lang-ml-col">
+                        <div class="lang-header">🇮🇳 മലയാളം</div>
+                        <p><strong>എന്താണ് അഗ്രോ ഷോപ്പ് മാനേജർ (AgroShop Manager)?</strong><br>
+                        കേരളത്തിലെ റബ്ബർ വ്യാപാര സ്ഥാപനങ്ങൾ, സ്പൈസസ് ഡീലർമാർ, വളം-കീടനാശിനി കടകൾ എന്നിവർക്കായി പ്രത്യേകം രൂപകൽപ്പന ചെയ്ത ഒരു സമ്പൂർണ്ണ ബില്ലിംഗ്, കാഷ് മാനേജ്മെന്റ്, സ്റ്റോക്ക് & ജി.എസ്.ടി സൊല്യൂഷനാണ് അഗ്രോ ഷോപ്പ് മാനേജർ. കർഷകരിൽ നിന്ന് നേരിട്ട് സാധനങ്ങൾ വാങ്ങുന്നത് മുതൽ കൗണ്ടർ വിൽപ്പനയും മെഷീൻ വാടകയ്ക്ക് നൽകലും വരെ കടയിലെ എല്ലാ ഇടപാടുകളും എളുപ്പത്തിൽ ഇതിലൂടെ കൈകാര്യം ചെയ്യാം.</p>
+                        
+                        <p style="margin-top: 16px;"><strong>എന്തുകൊണ്ട് അഗ്രോ ഷോപ്പ് മാനേജർ?</strong></p>
+                        <ul>
+                            <li><strong>ഒറ്റ ക്ലിക്കിൽ ബില്ലിങ്ങും ജി.എസ്.ടി റിപ്പോർട്ടുകളും (One-Step Billing to GST):</strong> കർഷകരിൽ നിന്നുള്ള ആർ.സി.എം (RCM) പർച്ചേസ് വൗച്ചറുകൾ, കടയിലെ കൗണ്ടർ സെയിൽസ്, ഉപകരണങ്ങളുടെ വാടക എന്നിവ ബിൽ ചെയ്യുന്നതിനൊപ്പം തന്നെ ജി.എസ്.ടി ഫയലിംഗിനാവശ്യമായ GSTR-1, GSTR-3B, ഇൻപുട്ട് ടാക്സ് ക്രെഡിറ്റ് (ITC) റിപ്പോർട്ടുകളും തനിയെ തയ്യാറാക്കപ്പെടുന്നു.</li>
+                            <li><strong>ലളിതമായ യൂസർ ഇന്റർഫേസ്:</strong> കേരളത്തിലെ കാർഷിക വിപണിക്ക് അനുയോജ്യമായ ഉൽപ്പന്നങ്ങൾ (RSS 4, RSS 5, ഫീൽഡ് ലാറ്റക്സ്, കുരുമുളക്, അടക്ക, ഫോർമിക് ആസിഡ്) ഇതിൽ നേരത്തെ തന്നെ ക്രമീകരിച്ചിട്ടുണ്ട്. കൗണ്ടറിലെ തിരക്കിലും എളുപ്പത്തിൽ ഉപയോഗിക്കാവുന്ന ചില്ലറ കണക്കുകൂട്ടൽ (Change Calculator), അഡ്വാൻസ് തുക തനിയെ കുറയ്ക്കാനുള്ള സൗകര്യം എന്നിവയും ലഭ്യമാണ്.</li>
+                            <li><strong>100% സ്വകാര്യതയും വിവര സുരക്ഷയും (Privacy-First):</strong> നിങ്ങളുടെ കടയിലെ കച്ചവട കണക്കുകളോ ഉപഭോക്താക്കളുടെ വിവരങ്ങളോ പുറത്തുള്ള ക്ലൗഡ് സെർവറുകളിലേക്ക് അയക്കുന്നില്ല. വിവരങ്ങൾ പൂർണ്ണമായും നിങ്ങളുടെ ഫോണിലോ കമ്പ്യൂട്ടറിലോ മാത്രം സുരക്ഷിതമായി സൂക്ഷിക്കപ്പെടുന്നു.</li>
+                            <li><strong>ലളിതമായ ബാക്കപ്പും ഡിവൈസ് മാറ്റവും (One-Click Sync):</strong> ദിവസേനയുള്ള കണക്കുകൾ ഒറ്റ ക്ലിക്കിൽ വാട്ട്സ്ആപ്പിലേക്കോ ഗൂഗിൾ ഡ്രൈവിലേക്കോ ബാക്കപ്പ് ചെയ്യാം. ഫോൺ മാറ്റുകയോ മറ്റ് കമ്പ്യൂട്ടറുകളിൽ ഉപയോഗിക്കുകയോ ചെയ്യുമ്പോൾ ഈ ഫയൽ ഇമ്പോർട്ട് ചെയ്ത് എളുപ്പത്തിൽ ഉപയോഗിക്കാൻ സാധിക്കും.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
             <!-- 1. Initial Setup -->
             <section id="setup" class="doc-section">
@@ -909,8 +950,8 @@
     </div>
 
     <footer>
-        <p>🌱 <strong>Agro Shop Manager</strong> — Built for single-person Agro & Commodity Shops in Kerala.</p>
-        <p style="margin-top:6px; color: var(--text-muted);">Licensed Offline-First Web Application | Documentation v1.0</p>
+        <p>🌱 <strong>AgroShop Manager</strong> by <strong>Utharam</strong> — Built for single-person Agro & Commodity Shops in Kerala.</p>
+        <p style="margin-top:6px; color: var(--text-muted);">Licensed Offline-First Web Application | Official User Manual v1.0</p>
     </footer>
 
     <script>
